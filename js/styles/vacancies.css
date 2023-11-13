@@ -1,0 +1,105 @@
+body{
+    background-color: aliceblue;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+.container{
+    max-width: 1060px;
+    margin: 0 auto;
+}
+
+
+.vacancies{
+    display: block;
+    border-radius: 5px;
+    margin: 20px 10px;
+    padding: 20px 12px;
+    background-color: #fff;
+    max-width: 800px;
+    margin-top: 50px;
+    box-shadow: 2px 2px 2px 1px #959596;
+
+}
+
+.vacancy-name{
+    color: #0845e0;
+    font-size: 32px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.vacancy-name:hover{
+    color: #e61313;
+}
+
+.vacancy-description{
+    color: #6b1010;
+    font-size: 18px;
+    margin-top: 15px;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 80%;
+    
+}
+
+.vacancy-salary{
+    color: #01050e;
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-weight: 600;
+}
+
+
+
+.reaction-btn{
+    display: inline-block;
+    padding-top: 50px;
+}
+
+.show-contacts-btn, .reaction-btn{
+    
+    padding: 10px 10px;
+    background-color: #54df13;
+    border: 1px solid #54df13;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.show-contacts-btn:hover, .reaction-btn:hover{
+    color: #54df13;
+    background-color: #fff;
+}
+
+
+.show-contacts-btn{
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.reaction-btn{
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #54df13;
+    color: #54df13;
+    cursor: pointer;
+}
+
+.reaction-btn:hover{
+    background-color: #54df13;
+    color: #fff;
+}
+
+.btns{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-top: 20px;
+}

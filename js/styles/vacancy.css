@@ -1,0 +1,70 @@
+body{
+    background-color: #fff;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 40px auto;
+    
+}
+
+
+.block{
+    display: block;
+    border-radius: 5px;
+    margin: 20px 10px;
+    padding: 30px 30px;
+    background-color: #fff;
+    max-width: 900px;
+    margin-top: 120px;
+    box-shadow: 0px 1px 10px 1px #959596;
+    margin-left: 0;
+}
+
+.vacancy-name {
+    font-size: 50px;
+    color: #161515;
+    margin-bottom: 40px;
+}
+.vacancy-name:hover{
+    color: #161515;
+    cursor: auto;
+}
+
+.salary-level{
+    font-size: 30px;
+    color: #959596;
+}
+
+.vacancy-salary{
+    display: inline-block;
+    font-weight: 400;
+    margin-top: 30px;
+    font-size: 30px;
+}
+
+.desc_block{
+    margin-top: 40px;
+    font-size: 40px;
+}
+
+.desc{
+    font-size: 25px;
+    color: #232;
+    margin-top: 30px;
+    max-width: 900px;
+    line-height: 1.3;
+
+}
+
+.contacts{
+    margin-top: 50px;
+    font-size: 25px;
+}
+
+.vacancy-contacts{
+    display: block;
+    color: #318d06;
+    font-size: 20px;
+    padding-top: 10px;
+}
