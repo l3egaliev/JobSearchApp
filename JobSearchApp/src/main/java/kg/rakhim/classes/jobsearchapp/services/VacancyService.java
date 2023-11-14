@@ -9,10 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional(readOnly = true)
@@ -50,7 +47,12 @@ public class VacancyService {
     public List<Vacancy> findByName(String name){
         if(vrep.findByNameStartingWith(name) == null){
             return Collections.emptyList();
-        }else
-            return vrep.findByNameStartingWith(name);
+        }else {
+            char firstLetter = Character.toUpperCase(name.charAt(0));
+            String restOf = name.substring(1).toLowerCase();
+            String finalString = firstLetter + restOf;
+            return vrep.findByNameStartingWith(finalString);
+
+        }
     }
 }

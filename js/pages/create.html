@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание вакансии</title>
+    <link rel="stylesheet" href="../styles/create.css">
+</head>
+<body>
+    <div class="container">
+        <form action="vacancyForm" id="vacancyForm">
+            <h1>Создание вакансии</h1>
+            <label for="vacancy_name">Название вакансии</label>
+            <input type="text" name="name" id="vacancy_name">
+            
+            <label for="desc">Описание</label>
+            <textarea name="description" id="desc" cols="35" rows="10"></textarea>
+            
+            <label for="salary">Заработная плата</label>
+            <input type="text" name="salary" id="salary">
+
+            <label for="contacts">Контакты</label>
+            <input type="text" name="contacts" id="contacts" placeholder="Имя и номер телефона">
+            
+            <button type="button">Создать</button>
+        </form>
+    </div>
+
+    <script src="../api/create.js"></script>
+</body>
+</html>

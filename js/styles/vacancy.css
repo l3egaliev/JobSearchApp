@@ -68,3 +68,43 @@ body{
     font-size: 20px;
     padding-top: 10px;
 }
+
+
+                      /* Модальное окно */
+
+.modal{
+    position: relative;
+}                      
+
+.modal_block{
+    position: absolute;
+    padding: 25px 25px;
+    right: -125px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 2px #318d06;
+    background-color: #fff;
+    max-width: 300px;
+}
+
+.modal_text{
+    color: #318d06;
+    font-size: 22px;
+}
+
+.modal_button{
+    display: block;
+    background-color: #4acd0d;
+    border: 2px solid #318d06;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    padding: 7px 80px;
+    text-align: center;
+    cursor: pointer;
+    
+}
+
+.modal_button:hover{
+    background-color: #fff;
+    color: #318d06;
+}

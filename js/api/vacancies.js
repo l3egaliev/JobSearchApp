@@ -80,3 +80,42 @@ function redirectToPage(id) {
 }
 
 
+function search(){
+  var form = document.getElementById("searchForm")
+  var input = form.querySelector(".search")
+
+  form.querySelector("button").addEventListener("click", function(){
+    console.log(input.value)
+    var url = "http://localhost:8080/vacancies/search/"+input.value
+
+    var xhr = new XMLHttpRequest()
+  
+    xhr.open("GET", url)
+  
+    xhr.responseType = "json"
+    xhr.send()
+  
+  
+    xhr.onload = function() {
+      var founded = xhr.response
+      console.log(founded)
+      foundedVacancies(founded)
+    }
+
+  })
+
+}
+
+
+function foundedVacancies(founded){
+  var block = document.getElementById("block")
+  while(block.firstChild){
+    block.removeChild(block.firstChild)
+  }
+    showVacancies(founded)
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+  search()
+})
+

@@ -8,12 +8,17 @@
 </head>
 <body>
         <div class="container" id="container">
+
+            <form action="" id="searchForm">
+                <input type="text" name="search" id="search" placeholder="искать вакансию" class="search">
+                <button type="button">Искать</button>
+            </form>
+        
+
             <h1>Вакансии для вас</h1>
         
            <div class="block" id="block"></div>  
         </div>
-
-        <button class="further" style="display: block; margin: 0 auto;">Вперед</button>
 
     <script type="module" src="../api/vacancies.js"></script>
 </body>

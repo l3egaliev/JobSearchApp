@@ -40,16 +40,23 @@ public class VacancyController {
         return vService.getVacancy(id);
     }
 
-    @PostMapping("/create")
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    @PostMapping
     public ResponseEntity<HttpStatus> createVacancy(@RequestBody Vacancy v){
         vService.createVacancy(v);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @GetMapping("/vacancy/{name}")
+    @GetMapping("/search/{name}")
     public List<Vacancy> searchByName(@PathVariable(value = "name", required = false)
                                                 String name){
         return vService.findByName(name);
+    }
+
+    @DeleteMapping("/edit/{id}")
+    public ResponseEntity<HttpStatus> delete(@PathVariable("id") int id){
+        vService.deleteVacancy(id);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
 }

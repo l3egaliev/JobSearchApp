@@ -65,7 +65,7 @@ requestToOne.onload = function() {
         vacancy_contacts.appendChild(contacts)
 
         reaction.addEventListener('click', function(){
-            reactionTest(name)
+            showModal()
         })
 
         show_contacts_btn.addEventListener("click", function(){
@@ -81,4 +81,28 @@ requestToOne.onload = function() {
 
   function showContact(contacts){
       alert("Контакты работадателя: "+contacts.textContent)
+  }
+
+  function showModal(){
+    var modal = document.querySelector(".modal")
+    var modal_block = document.createElement("div")
+    var modal_text = document.createElement("p")
+    var modal_button = document.createElement("a")
+
+    modal_block.classList.add("modal_block")
+    modal_text.classList.add("modal_text")
+    modal_button.classList.add("modal_button")
+
+    modal_text.textContent = "Ваше резюме доставлено работадателю ✔"
+    modal_button.textContent = "Ок"
+
+    modal_block.appendChild(modal_text)
+    modal_block.appendChild(modal_button)
+    modal.appendChild(modal_block)
+
+
+    modal_button.addEventListener("click", function(){
+        modal_block.style.display = "none"
+    })
+
   }

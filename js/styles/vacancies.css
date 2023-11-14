@@ -9,7 +9,8 @@ a{
 
 .container{
     max-width: 1060px;
-    margin: 0 auto;
+    margin: 100px auto;
+    
 }
 
 
@@ -102,4 +103,27 @@ a{
     align-items: center;
     justify-content: start;
     margin-top: 20px;
+}
+
+#search, button{
+    display: inline-block;
+    position: fixed;
+    width: 40%;
+    font-size: 25px;
+    padding: 12px;
+    border: 1px solid #0845e0;
+    border-radius: 30px;
+    margin-top: -80px;
+    outline: #0845e0;
+}
+
+button{
+    position: fixed;
+    display: inline-block;
+    width: auto;
+    margin-left: 662px;
+    cursor: pointer;
+    background-color: #54df13;
+    color: #fff;
+    border: 1px solid #54df13;
 }
