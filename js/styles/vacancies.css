@@ -48,13 +48,7 @@ a{
     
 }
 
-.vacancy-salary{
-    color: #01050e;
-    font-size: 25px;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    font-weight: 600;
-}
+
 
 
 
@@ -127,3 +121,21 @@ button{
     color: #fff;
     border: 1px solid #54df13;
 }
+
+.salary{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.salaryFrom, .salaryTo{
+    color: #01050e;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.salaryFrom{
+    margin-right: 10px;
+}
+

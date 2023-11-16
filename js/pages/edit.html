@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание вакансии</title>
+    <title>Редактировать вакансию</title>
     <link rel="stylesheet" href="../styles/create.css">
+    <link rel="stylesheet" href="../styles/edit.css">
 </head>
 <body>
     <div class="container">
-        <form action="vacancyForm" id="vacancyForm">
-            <h1>Создание вакансии</h1>
+        <form action="vacancies.html" id="vacancyForm">
+            <h1>Редактирование вакансии</h1>
             <label for="vacancy_name">Название вакансии</label>
             <input type="text" name="name" id="vacancy_name">
             
             <label for="desc">Описание</label>
             <textarea name="description" id="desc" cols="35" rows="10"></textarea>
             
-            <label for="salary">Заработная плата</label>
+            <label for="salaryFrom">Заработная плата</label>
+
             <div id="salaryFromTo" class="salaryFromTo">
-                <span>От</span> <input type="text" name="salaryFrom" id="salaryFrom" class="salaryFrom">
-                 <span>До</span><input type="text" name="salaryTo" id="salaryTo">
-             </div>
+               <span>От</span> <input type="text" name="salaryFrom" id="salaryFrom" class="salaryFrom">
+                <span>До</span><input type="text" name="salaryTo" id="salaryTo">
+            </div>
 
             <label for="contacts">Контакты</label>
             <input type="text" name="contacts" id="contacts" placeholder="Имя и номер телефона">
             
-            <button type="button">Создать</button>
+            <button id="save">Сохранить</button>
+            <button id="delete">Удалить</button>
         </form>
     </div>
-
-    <script src="../api/create.js"></script>
+    <script src="../api/edit.js"></script>
 </body>
 </html>

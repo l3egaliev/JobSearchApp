@@ -37,8 +37,9 @@ document.addEventListener("DOMContentLoaded", function(){
         postRequest.setRequestHeader('Content-Type', 'application/json');
     
         postRequest.onload = function(){
+          var response = JSON.parse(postRequest.response)
           if(postRequest.status >= 200 && postRequest.status <= 300){
-              window.location.href = "vacancies.html"
+              window.location.href = "vacancy.html?id="+response.id
           }
         }
 

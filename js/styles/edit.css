@@ -1,0 +1,29 @@
+#delete{
+    background-color: #000;
+    border-color: #000;
+}
+
+#delete:hover{
+    color: #000;
+    background-color: #fff;
+}
+
+.salaryFromTo{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.salaryFromTo input{
+    width: 100px;
+    padding: 7px;
+}
+
+.salaryFrom{
+    margin-right: 10px;
+}
+
+.salaryFromTo span{
+    font-size: 25px;
+    margin-right: 10px;
+}

@@ -32,29 +32,55 @@ if(page == null & vacancy_per_page == null){
     
     for(var i = 0; i < jsonVacancies.length; i++){
       var name = document.createElement("a")
-      var salary = document.createElement('div')
+      var salary = document.createElement("div")
+      var nullSalary = document.createElement("span")
+      var salaryFrom = document.createElement('div')
+      var salaryTo = document.createElement('div')
       var vacancies = document.createElement("div")
       var btns = document.createElement("div")
       var reaction_btn = document.createElement("a")
       var show_contacts_btn = document.createElement("a")
 
 
-        name.classList.add("vacancy-name")
-        salary.classList.add("vacancy-salary")
-        vacancies.classList.add("vacancies")
-        btns.classList.add("btns")
-        reaction_btn.classList.add("reaction-btn")
-        show_contacts_btn.classList.add("show-contacts-btn")
+      name.classList.add("vacancy-name")
+      salaryFrom.classList.add("salaryFrom")
+      salaryTo.classList.add("salaryTo")
+      vacancies.classList.add("vacancies")
+      btns.classList.add("btns")
+      reaction_btn.classList.add("reaction-btn")
+      show_contacts_btn.classList.add("show-contacts-btn")
+      salary.classList.add("salary")
 
-        reaction_btn.textContent = "Откликнуться"
-        show_contacts_btn.textContent = "Показать контакты"
-        name.textContent = jsonVacancies[i].name
-        salary.textContent = jsonVacancies[i].salary + " ₽"
+      
+      
+
+      nullSalary.style.display = "none"
+      nullSalary.textContent = "Зарплата не указана"
+      reaction_btn.textContent = "Откликнуться"
+      show_contacts_btn.textContent = "Показать контакты"
+      name.textContent = jsonVacancies[i].name
+      salaryFrom.textContent = "от " + formatNumberWithSpace(jsonVacancies[i].salaryFrom)
+      salaryTo.textContent = "до " + formatNumberWithSpace(jsonVacancies[i].salaryTo) + " ₽"
+      
+      if(jsonVacancies[i].salaryFrom === null && jsonVacancies[i].salaryTo === null){
+        salaryFrom.style.display = "none"
+        salaryTo.style.display = "none"
+        nullSalary.style.display = "block"
+        nullSalary.style.fontSize = "24px"
+    } else if(jsonVacancies[i].salaryFrom === 0 && jsonVacancies[i].salaryTo === 0){
+        salaryFrom.style.display = "none"
+        salaryTo.style.display = "none"
+        nullSalary.style.display = "block"
+        nullSalary.style.fontSize = "24px"
+    }
         
 
         btns.appendChild(reaction_btn)
         btns.appendChild(show_contacts_btn)
         vacancies.appendChild(name)
+        salary.appendChild(salaryFrom)
+        salary.appendChild(salaryTo)
+        salary.appendChild(nullSalary)
         vacancies.appendChild(salary)
         vacancies.appendChild(btns)
         block.appendChild(vacancies)
@@ -119,3 +145,15 @@ document.addEventListener("DOMContentLoaded", function(){
   search()
 })
 
+
+
+function formatNumberWithSpace(number){
+  const strNumber = String(number)
+  if(strNumber.length <= 5){
+      return strNumber.slice(0,2)+" " + strNumber.slice(2)
+  }else if(strNumber.length >= 6){
+      return strNumber.slice(0, 3) + " " + strNumber.slice(3)
+  }else{
+      return strNumber
+  }
+}

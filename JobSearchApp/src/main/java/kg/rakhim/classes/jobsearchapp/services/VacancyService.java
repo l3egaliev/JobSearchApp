@@ -49,10 +49,26 @@ public class VacancyService {
             return Collections.emptyList();
         }else {
             char firstLetter = Character.toUpperCase(name.charAt(0));
-            String restOf = name.substring(1).toLowerCase();
+            String restOf = name.substring(1);
             String finalString = firstLetter + restOf;
             return vrep.findByNameStartingWith(finalString);
 
         }
     }
+
+    @Transactional
+    public void updateVacancy(int id, Vacancy updated){
+        Vacancy toUpdate = vrep.findById(id).orElse(null);
+        if(toUpdate != null){
+            toUpdate.setCreatedAt(updated.getCreatedAt());
+            toUpdate.setContacts(updated.getContacts());
+            toUpdate.setDescription(updated.getDescription());
+            toUpdate.setName(updated.getName());
+            toUpdate.setSalaryFrom(updated.getSalaryFrom());
+            toUpdate.setSalaryTo(updated.getSalaryTo());
+            vrep.save(toUpdate);
+        }
+
+    }
+
 }

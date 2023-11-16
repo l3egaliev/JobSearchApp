@@ -2,6 +2,7 @@ package kg.rakhim.classes.jobsearchapp.controllers;
 
 import kg.rakhim.classes.jobsearchapp.entities.Vacancy;
 import kg.rakhim.classes.jobsearchapp.services.VacancyService;
+import kg.rakhim.classes.jobsearchapp.utils.UpdateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vacancies")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class VacancyController {
     public final VacancyService vService;
 
@@ -40,11 +42,11 @@ public class VacancyController {
         return vService.getVacancy(id);
     }
 
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
+
     @PostMapping
-    public ResponseEntity<HttpStatus> createVacancy(@RequestBody Vacancy v){
+    public ResponseEntity<Vacancy> createVacancy(@RequestBody Vacancy v){
         vService.createVacancy(v);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new ResponseEntity<>(v, HttpStatus.OK);
     }
 
     @GetMapping("/search/{name}")
@@ -58,5 +60,17 @@ public class VacancyController {
         vService.deleteVacancy(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
+
+    @PatchMapping("/edit/{id}")
+    public ResponseEntity<HttpStatus> update(@PathVariable("id") int id, @RequestBody Vacancy vacancy){
+        vService.updateVacancy(id,vacancy);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+//    @ExceptionHandler
+//    public ResponseEntity<UpdateException> handUpdateException(UpdateException e){
+//        UpdateException ex = new UpdateException(e.getMessage());
+//        return new ResponseEntity<>(ex, HttpStatus.BAD_REQUEST);
+//    }
 
 }

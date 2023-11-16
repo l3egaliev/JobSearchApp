@@ -108,3 +108,20 @@ body{
     background-color: #fff;
     color: #318d06;
 }
+
+.salaryFromTo{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 50px;
+    margin-top: 10px;
+}
+
+.salaryFrom{
+    margin-right: 10px;
+}
+
+.salaryFrom, .salaryTo{
+    font-size: 32px;
+    font-weight: 400;
+}

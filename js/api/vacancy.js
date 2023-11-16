@@ -14,6 +14,7 @@ requestToOne.send()
 
 requestToOne.onload = function() {
     var vacancy = requestToOne.response
+    console.log(vacancy)
     showVacancy(vacancy)
   }
 
@@ -23,7 +24,13 @@ requestToOne.onload = function() {
   function showVacancy(vacancyToShow){
         var block = document.getElementById("vacancy-block")
         var name = document.createElement("div")
+        
         var salary = document.createElement("div")
+        var salaryFrom = document.createElement("div")
+        var salaryTo = document.createElement("div")
+        var nullSalary = document.createElement("span")
+        nullSalary.style.display = "none"
+
         var btns = document.createElement("div")
         var reaction = document.createElement("a")
         
@@ -38,24 +45,48 @@ requestToOne.onload = function() {
 
 
         name.classList.add("vacancy-name")
-        salary.classList.add("vacancy-salary")
+        salary.classList.add("salaryFromTo")
+        salaryFrom.classList.add("salaryFrom")
+        salaryTo.classList.add("salaryTo")
         btns.classList.add("btns")
         reaction.classList.add("reaction-btn")
         show_contacts_btn.classList.add("show-contacts-btn")
         desc.classList.add("desc")
-        contacts.classList.add("vacancy-contacts")
-
+        contacts.classList.add("vacancy-contacts")       
+       
+        nullSalary.textContent = "Зарплата не указана"
         name.textContent = vacancyToShow.name
-        salary.textContent = vacancyToShow.salary + " ₽ "
+        salaryFrom.textContent = "от "+formatNumberWithSpace(vacancyToShow.salaryFrom)
+        salaryTo.textContent = "до "+formatNumberWithSpace(vacancyToShow.salaryTo)+" ₽"
+        
+        
         reaction.textContent = "Откликнуться"
         show_contacts_btn.textContent = "Показать контакты"
         desc.textContent = vacancyToShow.description
         contacts.textContent = vacancyToShow.contacts
+        if(vacancyToShow.contacts === ""){
+            contacts.textContent = "Контакты не указаны"
+        }
 
+        if(vacancyToShow.salaryFrom == null && vacancyToShow.salaryTo == null){
+            salaryFrom.style.display = "none"
+            salaryTo.style.display = "none"
+            nullSalary.style.display = "block"
+            nullSalary.style.color = "red"
+        }else if(vacancyToShow.salaryFrom === 0 && vacancyToShow.salaryTo === 0){
+            salaryFrom.style.display = "none"
+            salaryTo.style.display = "none"
+            nullSalary.style.display = "block"
+            nullSalary.style.color = "red"
+
+        }
 
         btns.appendChild(reaction)
         btns.appendChild(show_contacts_btn)
         block.appendChild(name)
+        salary.appendChild(salaryFrom)
+        salary.appendChild(salaryTo)
+        salary.appendChild(nullSalary)
         salary_text.append(salary)
         block.append(salary_text)
         block.appendChild(btns)
@@ -104,5 +135,19 @@ requestToOne.onload = function() {
     modal_button.addEventListener("click", function(){
         modal_block.style.display = "none"
     })
+
+  }
+
+
+  function formatNumberWithSpace(number){
+    const strNumber = String(number)
+    if(strNumber.length <= 5){
+        return strNumber.slice(0,2)+" " + strNumber.slice(2)
+    }else if(strNumber.length >= 6){
+        return strNumber.slice(0, 3) + " " + strNumber.slice(3)
+    }else{
+        return strNumber
+    }
+
 
   }

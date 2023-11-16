@@ -19,8 +19,10 @@ public class Vacancy {
 
     @Column(name = "description")
     private String description;
-    @Column(name = "salary")
-    private String salary;
+    @Column(name = "salary_from")
+    private Integer salaryFrom;
+    @Column(name = "salary_to")
+    private Integer salaryTo;
     @Column(name = "contacts")
     private String contacts;
 
@@ -29,10 +31,11 @@ public class Vacancy {
     private Date createdAt;
 
 
-    public Vacancy(String name, String description, String salary, String contacts) {
+    public Vacancy(String name, String description, int salaryFrom, int salaryTo, String contacts) {
         this.name = name;
         this.description = description;
-        this.salary = salary;
+        this.salaryFrom = salaryFrom;
+        this.salaryTo = salaryTo;
         this.contacts = contacts;
     }
 
@@ -63,13 +66,18 @@ public class Vacancy {
         this.description = description;
     }
 
-    public String getSalary() {
-        return salary;
+    public Integer getSalaryFrom() {
+        return salaryFrom;
+    }
+    public Integer getSalaryTo(){
+        return salaryTo;
     }
 
-    public void setSalary(String salary) {
-        this.salary = salary;
+    public void setSalaryFrom(int salaryFrom) {
+        this.salaryFrom = salaryFrom;
     }
+
+    public void setSalaryTo(int salaryTo){this.salaryTo=salaryTo;}
 
     public String getContacts() {
         return contacts;
