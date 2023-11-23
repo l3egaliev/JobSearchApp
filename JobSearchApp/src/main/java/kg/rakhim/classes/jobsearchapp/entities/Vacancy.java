@@ -1,6 +1,11 @@
 package kg.rakhim.classes.jobsearchapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -11,13 +16,17 @@ import java.util.Date;
 public class Vacancy {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "vacancy_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
+    @NotNull(message = "Название вакансии не может быть пустым!")
+    @Size(min = 3, max = 60, message = "от 3 до 60 символов")
     private String name;
 
     @Column(name = "description")
+    @NotNull(message = "Пожалуйста введите описание вакансии...")
+    @Size(min = 10, message = "Должно быть не менее 10 слов!")
     private String description;
     @Column(name = "salary_from")
     private Integer salaryFrom;
@@ -25,6 +34,13 @@ public class Vacancy {
     private Integer salaryTo;
     @Column(name = "contacts")
     private String contacts;
+
+    @Column(name = "company_id")
+    private Integer company_id;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Company company;
 
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
@@ -41,6 +57,22 @@ public class Vacancy {
 
     public Vacancy(){}
 
+
+    public void setSalaryFrom(Integer salaryFrom) {
+        this.salaryFrom = salaryFrom;
+    }
+
+    public void setSalaryTo(Integer salaryTo) {
+        this.salaryTo = salaryTo;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
     public int getId() {
         return id;
@@ -94,5 +126,13 @@ public class Vacancy {
 
     public void setCreatedAt(Date createdAt){
         this.createdAt = createdAt;
+    }
+
+    public Integer getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(Integer company_id) {
+        this.company_id = company_id;
     }
 }

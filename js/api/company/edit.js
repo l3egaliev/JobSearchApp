@@ -13,20 +13,26 @@ document.addEventListener("DOMContentLoaded", function(){
     requestToOne.responseType = "json"
     requestToOne.send()
 
+        
     requestToOne.onload = function() {
-        var vacancy = requestToOne.response
-        console.log(vacancy)
-        setData(vacancy)
+      if(requestToOne.status >= 200 && requestToOne.status <= 300){
+          var vacancy = requestToOne.response
+          console.log(vacancy)
+          setData(vacancy)
+      }
     }
+        
+    
 
     function setData(data){
+      
         const form = document.getElementById("vacancyForm");
         form.elements.name.value =  data.name    
         form.elements.description.value =  data.description
         form.elements.contacts.value =  data.contacts
         form.elements.salaryFrom.value =  data.salaryFrom
         form.elements.salaryTo.value =  data.salaryTo
-        
+      
     }
 
  
@@ -69,7 +75,9 @@ document.addEventListener("DOMContentLoaded", function(){
         patchRequest.onload = function(){
           if(patchRequest.status >= 200 && patchRequest.status <= 300){
               console.log("Вакансия успешно сохранена")
-              window.location.href = "vacancy.html?id="+vacancyId
+              window.location.href = "/pages/public/vacancy.html?id="+vacancyId
+          }else{
+              console.log(patchRequest.response.message)
           } 
         }
 
@@ -85,13 +93,13 @@ document.addEventListener("DOMContentLoaded", function(){
             var deleteRequest = new XMLHttpRequest()
             var deleteUrl = "http://localhost:8080/vacancies/edit/"+vacancyId
             deleteRequest.open('DELETE',deleteUrl)
-            deleteRequest.onload = function(){
-                if(deleteRequest.status >= 200 && deleteRequest.status <= 300){
-                    console.log("Вакансия успешно удалена")
-                    window.location.href = "vacancies.html"
-                } 
-              }
             deleteRequest.send()
+            deleteRequest.onload = function(){
+              if(deleteRequest.status >= 200 && deleteRequest.status <= 300){
+                window.location.href = "/pages/public/vacancies.html"
+              }
+            }
+
            
         })
 

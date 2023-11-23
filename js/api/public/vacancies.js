@@ -1,12 +1,16 @@
+
+
+
+
 const urlParams = new URLSearchParams(window.location.search);
-const page = urlParams.get('page');
-const vacancy_per_page = urlParams.get('vacancy_per_page')
+// const page = urlParams.get('page');
+// const vacancy_per_page = urlParams.get('vacancy_per_page')
 
-var requestUrl = "http://localhost:8080/vacancies"+"/"+page+"/"+vacancy_per_page
+// var requestUrl = "http://localhost:8080/vacancies"+"/"+page+"/"+vacancy_per_page
 
-if(page == null & vacancy_per_page == null){
-  requestUrl = "http://localhost:8080/vacancies"
-}
+// if(page == null & vacancy_per_page == null){
+  var requestUrl = "http://localhost:8080/vacancies"
+// }
 
 
   console.log(requestUrl)
@@ -23,10 +27,9 @@ if(page == null & vacancy_per_page == null){
     showVacancies(vacancies)
   }
 
-
   
   
-  function showVacancies(jsonVacancies){
+  export  function showVacancies(jsonVacancies){
     var block = document.getElementById("block")
    
     
@@ -40,8 +43,9 @@ if(page == null & vacancy_per_page == null){
       var btns = document.createElement("div")
       var reaction_btn = document.createElement("a")
       var show_contacts_btn = document.createElement("a")
+      var company = document.createElement("div")
 
-
+      company.classList.add("company")
       name.classList.add("vacancy-name")
       salaryFrom.classList.add("salaryFrom")
       salaryTo.classList.add("salaryTo")
@@ -61,6 +65,7 @@ if(page == null & vacancy_per_page == null){
       name.textContent = jsonVacancies[i].name
       salaryFrom.textContent = "от " + formatNumberWithSpace(jsonVacancies[i].salaryFrom)
       salaryTo.textContent = "до " + formatNumberWithSpace(jsonVacancies[i].salaryTo) + " ₽"
+      company.textContent = jsonVacancies[i].company.name
       
       if(jsonVacancies[i].salaryFrom === null && jsonVacancies[i].salaryTo === null){
         salaryFrom.style.display = "none"
@@ -82,6 +87,7 @@ if(page == null & vacancy_per_page == null){
         salary.appendChild(salaryTo)
         salary.appendChild(nullSalary)
         vacancies.appendChild(salary)
+        vacancies.appendChild(company)
         vacancies.appendChild(btns)
         block.appendChild(vacancies)
         
@@ -109,10 +115,16 @@ function redirectToPage(id) {
 function search(){
   var form = document.getElementById("searchForm")
   var input = form.querySelector(".search")
+  var url
+ 
 
   form.querySelector("button").addEventListener("click", function(){
     console.log(input.value)
-    var url = "http://localhost:8080/vacancies/search/"+input.value
+    if(input.value == null){
+        url = "http://localhost:8080/vacancies"
+    }
+    url = "http://localhost:8080/vacancies/search/"+input.value
+  
 
     var xhr = new XMLHttpRequest()
   
@@ -133,6 +145,7 @@ function search(){
 }
 
 
+
 function foundedVacancies(founded){
   var block = document.getElementById("block")
   while(block.firstChild){
@@ -143,6 +156,7 @@ function foundedVacancies(founded){
 
 document.addEventListener("DOMContentLoaded", function(){
   search()
+  fromIndex()
 })
 
 
@@ -156,4 +170,33 @@ function formatNumberWithSpace(number){
   }else{
       return strNumber
   }
+}
+
+
+function fromIndex(){
+  const urlIndexParams = new URLSearchParams(window.location.search);
+  const search = urlIndexParams.get('search');
+  var urlSearch
+
+
+  console.log(search)
+  if(search == null){
+    urlSearch = "http://localhost:8080/vacancies"
+  }
+
+ urlSearch = "http://localhost:8080/vacancies/search/"+search
+
+    var searchRequest = new XMLHttpRequest()
+  
+    searchRequest.open("GET", urlSearch)
+  
+    searchRequest.responseType = "json"
+    searchRequest.send()
+  
+  
+    searchRequest.onload = function() {
+      var foundedFromIndex = searchRequest.response
+      console.log(foundedFromIndex)
+      foundedVacancies(foundedFromIndex)
+    }
 }

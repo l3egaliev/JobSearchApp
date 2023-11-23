@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Создание вакансии</title>
-    <link rel="stylesheet" href="../styles/create.css">
+    <link rel="stylesheet" href="/styles/company/create.css">
 </head>
 <body>
     <div class="container">
@@ -16,7 +16,7 @@
             <label for="desc">Описание</label>
             <textarea name="description" id="desc" cols="35" rows="10"></textarea>
             
-            <label for="salary">Заработная плата</label>
+            <div class="label">Заработная плата</div>
             <div id="salaryFromTo" class="salaryFromTo">
                 <span>От</span> <input type="text" name="salaryFrom" id="salaryFrom" class="salaryFrom">
                  <span>До</span><input type="text" name="salaryTo" id="salaryTo">
@@ -29,6 +29,6 @@
         </form>
     </div>
 
-    <script src="../api/create.js"></script>
+    <script src="/api/company/create.js"></script>
 </body>
 </html>

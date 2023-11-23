@@ -1,0 +1,12 @@
+.block{
+    margin: 100px auto;
+    max-width: 400px;
+    background-color: #e4e4e4;
+    padding: 20px 30px;
+    border-radius: 10px;
+}
+
+.block input{
+    margin-bottom: 10px;
+    margin-top: 5px;
+}

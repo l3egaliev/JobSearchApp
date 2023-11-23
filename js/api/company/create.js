@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(){
     form.querySelector("button").addEventListener("click", function(){
         console.log(getFormValues())
     
-        var postUrl = "http://localhost:8080/vacancies"
+        var postUrl = "http://localhost:8080/vacancies/create"
         var postRequest = new XMLHttpRequest()
     
         postRequest.open('POST', postUrl, true)
@@ -39,7 +39,9 @@ document.addEventListener("DOMContentLoaded", function(){
         postRequest.onload = function(){
           var response = JSON.parse(postRequest.response)
           if(postRequest.status >= 200 && postRequest.status <= 300){
-              window.location.href = "vacancy.html?id="+response.id
+              window.location.href = "/pages/public/vacancy.html?id="+response.id
+          }else{
+            console.log(response)
           }
         }
 

@@ -24,6 +24,10 @@ requestToOne.onload = function() {
   function showVacancy(vacancyToShow){
         var block = document.getElementById("vacancy-block")
         var name = document.createElement("div")
+
+        var company = document.getElementById("company")
+        var company_name = document.createElement("a")
+        var company_address = document.createElement("p")
         
         var salary = document.createElement("div")
         var salaryFrom = document.createElement("div")
@@ -44,21 +48,26 @@ requestToOne.onload = function() {
         var show_contacts_btn = document.createElement("a")
 
 
-        name.classList.add("vacancy-name")
-        salary.classList.add("salaryFromTo")
-        salaryFrom.classList.add("salaryFrom")
-        salaryTo.classList.add("salaryTo")
-        btns.classList.add("btns")
-        reaction.classList.add("reaction-btn")
-        show_contacts_btn.classList.add("show-contacts-btn")
-        desc.classList.add("desc")
-        contacts.classList.add("vacancy-contacts")       
-       
+        addClassList(name, "vacancy-name")
+        addClassList(company_name, "company_name")
+        addClassList(salary, "salaryFromTo")
+        addClassList(salaryFrom, "salaryFrom")
+        addClassList(salaryTo, "salaryTo")
+        addClassList(btns, "btns")
+        addClassList(reaction, "reaction-btn")
+        addClassList(show_contacts_btn, "show-contacts-btn")        
+        addClassList(desc, "desc")
+        addClassList(contacts, "vacancy-contacts")
+        addClassList(company_address, "company-address")
+        
         nullSalary.textContent = "Зарплата не указана"
         name.textContent = vacancyToShow.name
         salaryFrom.textContent = "от "+formatNumberWithSpace(vacancyToShow.salaryFrom)
         salaryTo.textContent = "до "+formatNumberWithSpace(vacancyToShow.salaryTo)+" ₽"
-        
+        if(vacancyToShow.company != null){
+            company_name.textContent = vacancyToShow.company.name
+            company_address.textContent = vacancyToShow.company.address
+        }
         
         reaction.textContent = "Откликнуться"
         show_contacts_btn.textContent = "Показать контакты"
@@ -90,7 +99,8 @@ requestToOne.onload = function() {
         salary_text.append(salary)
         block.append(salary_text)
         block.appendChild(btns)
-        
+        company.appendChild(company_name)
+        company.appendChild(company_address)
 
         desc_block.appendChild(desc)
         vacancy_contacts.appendChild(contacts)
@@ -102,6 +112,11 @@ requestToOne.onload = function() {
         show_contacts_btn.addEventListener("click", function(){
             showContact(contacts)
         })
+  }
+
+
+  function addClassList(element, classOfElement){
+        element.classList.add(classOfElement)
   }
 
 

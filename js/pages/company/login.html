@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зарегистроватся</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/company/login.css">
+</head>
+<body>
+    <div class="container">
+        <form class="block was-validated" id="block">
+                    <label for="name" class="form-label">Название компании</label>
+                    <input type="text" name = "name" class="form-control" id="name" required>
+                    <div class = "invalid-feedback" id="name-feedback"></div>
+             
+                    <label for="email" class="form-label">Адрес электронной почты</label>
+                    <input type="email" name="email" class="form-control" id="email" required placeholder="name@example.com">
+                    <div class = "invalid-feedback" id="email-feedback"></div>
+              
+                    <label for="about" class="form-label">Описание компании</label>
+                    <textarea class="form-control" name="about" id="about" rows="3" required></textarea>
+                    <div class = "invalid-feedback" id = "about-feedback"></div>
+    
+                    <label for="address"  class="form-label">Адрес</label>
+                    <input type="text" name="address" class="form-control" id="address" required placeholder="Москва, улица Ленина 12">
+                    <div class = "invalid-feedback" id="address-feedback"></div>
+          
+            <button type="button" class="btn btn-warning regist">Зарегистроватся</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="/api/company/login.js"></script>
+</body>
+</html>
